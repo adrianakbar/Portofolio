@@ -4,22 +4,21 @@
 
 :root {
   --background: white;
-  --foreground: #292929;
+  --foreground: black;
   --text: #292929;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #292929;
+    --background: black;
     --foreground: white;
     --text: white;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  text-decoration: var(--text);
+  color: white;
+  background: black;
   font-family: "Poppins", sans-serif;
 }
 

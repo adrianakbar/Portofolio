@@ -36,7 +36,7 @@ export const NavBar = ({ menuItems }: { menuItems: MenuItem[] }) => {
         </div>
 
         {/* Dark Mode Toggle */}
-        <div className="hidden md:flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+        <div className="hidden md:flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none transition-all">
         <FontAwesomeIcon icon={faMoon} size="xl"/>
         </div>
 
@@ -46,7 +46,7 @@ export const NavBar = ({ menuItems }: { menuItems: MenuItem[] }) => {
             onClick={toggleMenu}
             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
           >
-            {isOpen ? <FontAwesomeIcon icon={faXmark} size="lg" /> : <FontAwesomeIcon icon={faBars} size="lg" />}
+            {isOpen ? <FontAwesomeIcon icon={faXmark} size="lg" /> : <FontAwesomeIcon icon={faBars} size="lg"/>}
           </button>
         </div>
       </div>
