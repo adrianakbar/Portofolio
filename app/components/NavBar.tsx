@@ -1,7 +1,8 @@
 "use client";
 
-import { Menu, X, Moon } from "lucide-react";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faMoon, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface MenuItem {
   title: string;
@@ -35,8 +36,8 @@ export const NavBar = ({ menuItems }: { menuItems: MenuItem[] }) => {
         </div>
 
         {/* Dark Mode Toggle */}
-        <div className="hidden md:flex items-center justify-center p-2 rounded-md">
-          <Moon className="h-6 w-6" />
+        <div className="hidden md:flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+        <FontAwesomeIcon icon={faMoon} size="xl"/>
         </div>
 
         {/* Mobile Menu Button */}
@@ -45,7 +46,7 @@ export const NavBar = ({ menuItems }: { menuItems: MenuItem[] }) => {
             onClick={toggleMenu}
             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? <FontAwesomeIcon icon={faXmark} size="lg" /> : <FontAwesomeIcon icon={faBars} size="lg" />}
           </button>
         </div>
       </div>
