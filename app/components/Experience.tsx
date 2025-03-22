@@ -7,6 +7,7 @@ interface ExperienceProps {
   description: string;
   icon: string;
   github?: string;
+  size?: number;
 }
 
 export default function Experience({ events }: { events: ExperienceProps[] }) {
@@ -19,7 +20,7 @@ export default function Experience({ events }: { events: ExperienceProps[] }) {
               <img
                 src={event.icon}
                 alt={event.name}
-                className="w-13 h-13 rounded-full"
+                className={`h-${event.size ?? 13} w-${event.size ?? 13} rounded-full`}
               />
             </div>
             <p className="text-gray-500 text-sm">{event.date}</p>

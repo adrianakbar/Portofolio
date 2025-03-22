@@ -13,10 +13,12 @@ import {
 import {
   faGithub,
   faInstagram,
+  faLaravel,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
 import ContentTitle from "./components/ContentTitle";
+import ProjectCard from "./components/ProjectCard";
 
 export default function Home() {
   return (
@@ -93,39 +95,43 @@ export default function Home() {
 
       <ContentTitle title="Experience" icon={faStar} />
       <Experience
-        events={
-          [
-             {
-              date: "November 23rd - 25th, 2018",
-              name: "Hack Western 5",
-              location: "London, Ontario",
-              description: "Developed a mobile application which delivered bedtime stories to children using augmented reality.",
-              icon: "/assets/infinite-learning.png",
-            },
-            {
-              date: "September 14th - 16th, 2018",
-              name: "Hack The North",
-              location: "Waterloo, Ontario",
-              description: "Developed a mobile application which delivers university campus wide events in real time to all students.",
-              icon: "/path-to-icon/hack-the-north.png",
-            },
-            {
-              date: "March 23rd - 24th, 2018",
-              name: "FirstNet Public Safety Hackathon",
-              location: "San Francisco, California",
-              description: "Developed a mobile application which communicates a victim's medical data from inside an ambulance to doctors at hospital.",
-              icon: "/path-to-icon/firstnet.png",
-            },
-            {
-              date: "February 3rd - 4th, 2018",
-              name: "DeveloperWeek Hackathon",
-              location: "San Francisco, California",
-              description: "Developed a web application which aggregates social media data regarding cryptocurrencies and predicts future prices.",
-              icon: "/path-to-icon/developerweek.png",
-              github: "https://github.com/your-repo",
-            },
-          ]
-        }
+        events={[
+          {
+            date: "November 23rd - 25th, 2018",
+            name: "Hack Western 5",
+            location: "London, Ontario",
+            description:
+              "Developed a mobile application which delivered bedtime stories to children using augmented reality.",
+            icon: "/assets/infinite-learning.png",
+          },
+          {
+            date: "September 14th - 16th, 2018",
+            name: "Hack The North",
+            location: "Waterloo, Ontario",
+            description:
+              "Developed a mobile application which delivers university campus wide events in real time to all students.",
+            icon: "/assets/alazhar-logo.png",
+            size: 10,
+          },
+          {
+            date: "March 23rd - 24th, 2018",
+            name: "FirstNet Public Safety Hackathon",
+            location: "San Francisco, California",
+            description:
+              "Developed a mobile application which communicates a victim's medical data from inside an ambulance to doctors at hospital.",
+            icon: "/assets/ukmo-logo.png",
+            size: 10,
+          },
+          {
+            date: "February 3rd - 4th, 2018",
+            name: "DeveloperWeek Hackathon",
+            location: "San Francisco, California",
+            description:
+              "Developed a web application which aggregates social media data regarding cryptocurrencies and predicts future prices.",
+            icon: "/assets/programmer-logo.jpg",
+            github: "https://github.com/your-repo",
+          },
+        ]}
       />
 
       <ContentTitle title="My Projects" icon={faStar} center={true} />
@@ -134,6 +140,28 @@ export default function Home() {
         <div className="opacity-40 my-5">
           Here's a curated selection showcasing my expertise and the achieved
           results.
+        </div>
+        <div>
+          <ProjectCard
+            title="Aora"
+            status="Development"
+            year="2024"
+            image="/assets/infinite-learning.png"
+          />
+          <div className="gap-2 flex">
+            <div className="bg-[#5FB899] p-3 rounded-xl inline-block text-xs text-black">
+              <div className="gap-2 flex">
+                <FontAwesomeIcon icon={faLaravel} size="lg" />
+                <span>Laravel</span>
+              </div>
+            </div>
+            <div className="bg-[#5FB899] p-3 rounded-xl inline-block text-xs text-black">
+              <div className="gap-2 flex">
+                <FontAwesomeIcon icon={faLaravel} size="lg" />
+                <span>Laravel</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
