@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Lanyard from "./components/Lanyard";
 import RotatingText from "./components/RotatingText/RotatingText";
-import { NavBar } from "./components/NavBar";
-import { Experience } from "./components/Experience";
+import NavBar from "./components/NavBar";
+import Experience from "./components/Experience";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCertificate,
@@ -16,6 +16,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
+import ContentTitle from "./components/ContentTitle";
 
 export default function Home() {
   return (
@@ -24,9 +25,9 @@ export default function Home() {
         <NavBar
           menuItems={[
             { title: "Home", link: "#" },
+            { title: "About Me", link: "#" },
             { title: "Experience", link: "#" },
             { title: "Projects", link: "#" },
-            { title: "Contact", link: "#" },
           ]}
         />
       </div>
@@ -74,10 +75,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-10 gap-2 flex animate-bounce justify-center text-[#5FB899]">
-        <FontAwesomeIcon icon={faStar} size="xl" />
-        <span>About Me</span>
-      </div>
+      <ContentTitle title="About Me" icon={faStar} center={true} />
       <ScrollReveal
         baseOpacity={0}
         enableBlur={true}
@@ -93,15 +91,44 @@ export default function Home() {
         across both mobile and web platforms.
       </ScrollReveal>
 
-      <div className="mb-10 gap-2 flex animate-bounce mt-30 text-[#5FB899]">
-        <FontAwesomeIcon icon={faStar} size="xl" />
-        <span>Experience</span>
-      </div>
+      <ContentTitle title="Experience" icon={faStar} />
+      <Experience
+        events={
+          [
+             {
+              date: "November 23rd - 25th, 2018",
+              name: "Hack Western 5",
+              location: "London, Ontario",
+              description: "Developed a mobile application which delivered bedtime stories to children using augmented reality.",
+              icon: "/assets/infinite-learning.png",
+            },
+            {
+              date: "September 14th - 16th, 2018",
+              name: "Hack The North",
+              location: "Waterloo, Ontario",
+              description: "Developed a mobile application which delivers university campus wide events in real time to all students.",
+              icon: "/path-to-icon/hack-the-north.png",
+            },
+            {
+              date: "March 23rd - 24th, 2018",
+              name: "FirstNet Public Safety Hackathon",
+              location: "San Francisco, California",
+              description: "Developed a mobile application which communicates a victim's medical data from inside an ambulance to doctors at hospital.",
+              icon: "/path-to-icon/firstnet.png",
+            },
+            {
+              date: "February 3rd - 4th, 2018",
+              name: "DeveloperWeek Hackathon",
+              location: "San Francisco, California",
+              description: "Developed a web application which aggregates social media data regarding cryptocurrencies and predicts future prices.",
+              icon: "/path-to-icon/developerweek.png",
+              github: "https://github.com/your-repo",
+            },
+          ]
+        }
+      />
 
-      <div className="mb-10 gap-2 flex animate-bounce justify-center text-[#5FB899]">
-        <FontAwesomeIcon icon={faStar} size="xl" />
-        <span>My Projects</span>
-      </div>
+      <ContentTitle title="My Projects" icon={faStar} center={true} />
       <div>
         <div className="text-2xl">Selected Projects</div>
         <div className="opacity-40 my-5">
