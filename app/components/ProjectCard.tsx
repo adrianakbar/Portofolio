@@ -1,24 +1,47 @@
 import Image from "next/image";
+import TiltedCard from "./TiltedCard/TiltedCard";
 
 interface ProjectCardProps {
-  title: string;
-  status: string;
-  year: string;
-  image: string;
+  imageSrc: string;
+  captionText: string;
+  overlayContent: string;
+  projectName: string;
+  projectBuild: string;
+  projectYear: number;
 }
 
-export default function ProjectCard({ title, status, year, image }: ProjectCardProps) {
+export default function ProjectCard({
+  imageSrc,
+  captionText,
+  overlayContent,
+  projectName,
+  projectBuild,
+  projectYear,
+}: ProjectCardProps) {
   return (
-    <div className="bg-black p-5 rounded-2xl max-w-sm">
-      <div className="bg-yellow-100 p-5 rounded-xl flex justify-center">
-        <Image src={image} alt={title} width={300} height={200} className="rounded-xl" />
-      </div>
+    <div>
+      <TiltedCard
+        imageSrc={imageSrc}
+        altText={captionText}
+        captionText={captionText}
+        containerHeight="350px"
+        containerWidth="500px"
+        imageHeight="350px"
+        imageWidth="500px"
+        rotateAmplitude={12}
+        scaleOnHover={1.2}
+        showMobileWarning={true}
+        showTooltip={true}
+        displayOverlayContent={true}
+        overlayContent={
+          <p className="tilted-card-demo-text">{overlayContent}</p>
+        }
+      />
       <div className="mt-4">
-        <h3 className="text-white text-lg font-semibold">{title}</h3>
+        <h3 className="text-white text-lg font-semibold">{projectName}</h3>
         <div className="flex justify-between mt-2">
-
-        <p className="text-gray-400">{status}</p>
-        <p className="text-gray-400 text-sm ">{year}</p>
+          <p className="text-gray-400">{projectBuild}</p>
+          <p className="text-gray-400 text-sm">{projectYear}</p>
         </div>
       </div>
     </div>

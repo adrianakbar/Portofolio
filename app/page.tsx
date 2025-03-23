@@ -6,11 +6,13 @@ import Experience from "./components/Experience";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCertificate,
+  faDatabase,
   faEnvelope,
   faHand,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import {
+  faFigma,
   faGithub,
   faInstagram,
   faLaravel,
@@ -19,6 +21,7 @@ import {
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
 import ContentTitle from "./components/ContentTitle";
 import ProjectCard from "./components/ProjectCard";
+import TiltedCard from "./components/TiltedCard/TiltedCard";
 
 export default function Home() {
   return (
@@ -26,10 +29,10 @@ export default function Home() {
       <div>
         <NavBar
           menuItems={[
-            { title: "Home", link: "#" },
-            { title: "About Me", link: "#" },
-            { title: "Experience", link: "#" },
-            { title: "Projects", link: "#" },
+            { title: "Home", link: "#home" },
+            { title: "About Me", link: "#aboutme" },
+            { title: "Experience", link: "#experience" },
+            { title: "Projects", link: "#projects" },
           ]}
         />
       </div>
@@ -77,7 +80,7 @@ export default function Home() {
         </div>
       </div>
 
-      <ContentTitle title="About Me" icon={faStar} center={true} />
+      <ContentTitle title="About Me" icon={faStar} center={true} id="aboutme" />
       <ScrollReveal
         baseOpacity={0}
         enableBlur={true}
@@ -93,7 +96,12 @@ export default function Home() {
         across both mobile and web platforms.
       </ScrollReveal>
 
-      <ContentTitle title="Experience" icon={faStar} />
+      <ContentTitle
+        title="Experience"
+        icon={faStar}
+        marginTop="mt-20"
+        id="experience"
+      />
       <Experience
         events={[
           {
@@ -134,33 +142,51 @@ export default function Home() {
         ]}
       />
 
-      <ContentTitle title="My Projects" icon={faStar} center={true} />
+      <ContentTitle
+        title="My Projects"
+        icon={faStar}
+        center={true}
+        marginTop="mt-20"
+        id="projects"
+      />
       <div>
         <div className="text-2xl">Selected Projects</div>
         <div className="opacity-40 my-5">
-          Here's a curated selection showcasing my expertise and the achieved
-          results.
+          Here are some big and complex projects that I have worked on so far.
         </div>
         <div>
-          <ProjectCard
-            title="Aora"
-            status="Development"
-            year="2024"
-            image="/assets/infinite-learning.png"
-          />
-          <div className="gap-2 flex">
-            <div className="bg-[#5FB899] p-3 rounded-xl inline-block text-xs text-black">
-              <div className="gap-2 flex">
-                <FontAwesomeIcon icon={faLaravel} size="lg" />
-                <span>Laravel</span>
+          <div className="grid grid-cols-12">
+            <div className="col-span-6 max-w-fit">
+              <ProjectCard
+                imageSrc="/assets/programmer-logo.jpg"
+                captionText="Infinite Learning"
+                overlayContent="Website"
+                projectName="Infinite Learning"
+                projectBuild="Development & Design"
+                projectYear={2024}
+              />
+              <div className="gap-4 flex mt-2.5">
+                <div className="text-sm text-white">
+                  <div className="gap-1.5 flex">
+                    <FontAwesomeIcon icon={faLaravel} size="xl" />
+                    <span>Laravel</span>
+                  </div>
+                </div>
+                <div className="text-sm text-white">
+                  <div className="gap-1.5 flex">
+                    <FontAwesomeIcon icon={faDatabase} size="xl" />
+                    <span>Mysql</span>
+                  </div>
+                </div>
+                <div className="text-sm text-white">
+                  <div className="gap-1.5 flex">
+                    <FontAwesomeIcon icon={faFigma} size="xl" />
+                    <span>Figma</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="bg-[#5FB899] p-3 rounded-xl inline-block text-xs text-black">
-              <div className="gap-2 flex">
-                <FontAwesomeIcon icon={faLaravel} size="lg" />
-                <span>Laravel</span>
-              </div>
-            </div>
+            <div className="col-span-6"></div>
           </div>
         </div>
       </div>
