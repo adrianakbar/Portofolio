@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #07070b;
+  --color-surface: #111118;
+  --color-surface-2: #181822;
+  --color-border: #2a2a38;
+  --color-text: #f4f4f7;
+  --color-muted: #9b9bb0;
+  --color-accent: #5eead4;
+  --color-accent-2: #a78bfa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.section {
+  @apply relative mx-auto w-full max-w-6xl px-5 md:px-8;
+}
+
+.card-surface {
+  @apply rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-sm;
+}
+
+@keyframes star-movement-bottom {
+  0% { transform: translate(0%, 0%); opacity: 1; }
+  100% { transform: translate(-100%, 0%); opacity: 0; }
+}
+
+@keyframes star-movement-top {
+  0% { transform: translate(0%, 0%); opacity: 1; }
+  100% { transform: translate(100%, 0%); opacity: 0; }
+}
+
+@utility animate-star-movement-bottom {
+  animation: star-movement-bottom linear infinite alternate;
+}
+
+@utility animate-star-movement-top {
+  animation: star-movement-top linear infinite alternate;
+}
