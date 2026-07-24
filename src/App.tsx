@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Github,
   Linkedin,
@@ -9,6 +9,8 @@ import {
   User,
   Briefcase,
   FolderKanban,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import Aurora from './components/Aurora'
 import SplitText from './components/SplitText'
@@ -201,42 +203,76 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
 }
 
 export default function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof document === 'undefined') return 'dark'
+    const current = document.documentElement.getAttribute('data-theme')
+    return current === 'light' ? 'light' : 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    try {
+      localStorage.setItem('theme', theme)
+    } catch {
+      // ignore
+    }
+  }, [theme])
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+
   const dockItems = useMemo(
     () => [
       {
-        icon: <Home className="h-5 w-5 text-white" />,
+        icon: <Home className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'Home',
         onClick: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
-        icon: <User className="h-5 w-5 text-white" />,
+        icon: <User className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'About',
         onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
-        icon: <Briefcase className="h-5 w-5 text-white" />,
+        icon: <Briefcase className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'Skills',
         onClick: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
-        icon: <FolderKanban className="h-5 w-5 text-white" />,
+        icon: <FolderKanban className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'Projects',
         onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
-        icon: <Mail className="h-5 w-5 text-white" />,
+        icon: <Mail className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'Contact',
         onClick: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }),
       },
+      {
+        icon: theme === 'dark' ? <Sun className="h-5 w-5 text-[var(--color-text)]" /> : <Moon className="h-5 w-5 text-[var(--color-text)]" />,
+        label: theme === 'dark' ? 'Light' : 'Dark',
+        onClick: toggleTheme,
+      },
     ],
-    [],
+    [theme],
   )
 
+  const logoColor = (key: string, fallback: string) => {
+    if (theme === 'light' && (key === 'github' || key === 'vercel' || key === 'nextdotjs' || key === 'prisma')) {
+      return '111827'
+    }
+    return fallback
+  }
+
   return (
-    <ClickSpark sparkColor="#5eead4" sparkSize={8} sparkRadius={18} sparkCount={10} duration={450}>
+    <ClickSpark sparkColor={theme === 'dark' ? '#5eead4' : '#0f766e'} sparkSize={8} sparkRadius={18} sparkCount={10} duration={450}>
       <div className="relative min-h-dvh overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text)]">
-        <div className="pointer-events-none fixed inset-0 z-0 opacity-70">
-          <Aurora colorStops={['#5eead4', '#a78bfa', '#22d3ee']} blend={0.55} amplitude={0.9} speed={0.55} />
+        <div className={`pointer-events-none fixed inset-0 z-0 ${theme === 'light' ? 'opacity-35' : 'opacity-70'}`}>
+          <Aurora
+            colorStops={theme === 'light' ? ['#99f6e4', '#c4b5fd', '#7dd3fc'] : ['#5eead4', '#a78bfa', '#22d3ee']}
+            blend={theme === 'light' ? 0.35 : 0.55}
+            amplitude={0.9}
+            speed={0.55}
+          />
         </div>
         <div className="pointer-events-none fixed inset-0 z-0 bg-gradient-to-b from-transparent via-[var(--color-bg)]/40 to-[var(--color-bg)]" />
 
@@ -259,14 +295,25 @@ export default function App() {
                 ['Projects', '#projects'],
                 ['Contact', '#contact'],
               ].map(([label, href]) => (
-                <a key={href} href={href} className="transition hover:text-white">
+                <a key={href} href={href} className="transition hover:text-[var(--color-text)]">
                   {label}
                 </a>
               ))}
             </nav>
-            <StarBorder as="a" href={PROFILE.github} className="text-sm" color="#5eead4" speed="6s">
-              GitHub
-            </StarBorder>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              >
+                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+              <StarBorder as="a" href={PROFILE.github} className="text-sm" color={theme === 'dark' ? '#5eead4' : '#0f766e'} speed="6s">
+                GitHub
+              </StarBorder>
+            </div>
           </div>
         </header>
 
@@ -319,29 +366,29 @@ export default function App() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#projects"
-                  className="rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-black transition hover:brightness-110"
+                  className="rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--color-btn-on-accent)] transition hover:brightness-110"
                 >
                   Lihat Projects
                 </a>
                 <a
                   href="#contact"
-                  className="rounded-full border border-[var(--color-border)] bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+                  className="rounded-full border border-[var(--color-border)] bg-[var(--color-soft)] px-5 py-2.5 text-sm font-medium text-[var(--color-text)] transition hover:bg-[var(--color-soft-2)]"
                 >
                   Hubungi Saya
                 </a>
               </div>
 
               <div className="mt-8 flex items-center gap-4 text-[var(--color-muted)]">
-                <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-white" aria-label="GitHub">
+                <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-[var(--color-text)]" aria-label="GitHub">
                   <Github className="h-5 w-5" />
                 </a>
-                <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-white" aria-label="LinkedIn">
+                <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-[var(--color-text)]" aria-label="LinkedIn">
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <a href={PROFILE.instagram} target="_blank" rel="noreferrer" className="hover:text-white" aria-label="Instagram">
+                <a href={PROFILE.instagram} target="_blank" rel="noreferrer" className="hover:text-[var(--color-text)]" aria-label="Instagram">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href={`mailto:${PROFILE.email}`} className="hover:text-white" aria-label="Email">
+                <a href={`mailto:${PROFILE.email}`} className="hover:text-[var(--color-text)]" aria-label="Email">
                   <Mail className="h-5 w-5" />
                 </a>
               </div>
@@ -367,7 +414,7 @@ export default function App() {
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-3 px-1 pb-1">
                       {STATS.slice(0, 4).map((s) => (
-                        <div key={s.label} className="rounded-xl border border-[var(--color-border)] bg-black/20 p-3">
+                        <div key={s.label} className="rounded-xl border border-[var(--color-border)] bg-[var(--color-overlay)] p-3">
                           <div className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-accent)]">
                             <CountUp to={s.value} duration={1.6} className="inline" />
                             +
@@ -415,8 +462,8 @@ export default function App() {
                   <FadeContent key={skill.key} delay={i * 40} duration={550}>
                     <SpotlightCard className="card-surface h-full p-4" spotlightColor="rgba(94, 234, 212, 0.16)">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-                          <BrandLogo slug={logo.slug} color={logo.color} label={logo.label} />
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-soft)]">
+                          <BrandLogo slug={logo.slug} color={logoColor(skill.key, logo.color)} label={logo.label} />
                         </div>
                         <div className="min-w-0">
                           <div className="truncate font-medium leading-tight">{logo.label}</div>
@@ -445,10 +492,10 @@ export default function App() {
                             {p.type}
                           </span>
                           <div className="flex gap-2">
-                            <a href={p.repo} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-white" aria-label={`${p.title} repo`}>
+                            <a href={p.repo} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} repo`}>
                               <Github className="h-4 w-4" />
                             </a>
-                            <a href={p.href} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-white" aria-label={`${p.title} live`}>
+                            <a href={p.href} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} live`}>
                               <ExternalLink className="h-4 w-4" />
                             </a>
                           </div>
@@ -463,11 +510,11 @@ export default function App() {
                           return (
                             <span
                               key={key}
-                              className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-xs text-[var(--color-muted)]"
+                              className="inline-flex items-center gap-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-soft)] px-2 py-1 text-xs text-[var(--color-muted)]"
                               title={logo.label}
                             >
                               <img
-                                src={`https://cdn.simpleicons.org/${logo.slug}/${logo.color}`}
+                                src={`https://cdn.simpleicons.org/${logo.slug}/${logoColor(key, logo.color)}`}
                                 alt={logo.label}
                                 className="h-3.5 w-3.5 object-contain"
                                 loading="lazy"
@@ -495,7 +542,7 @@ export default function App() {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <a
                   href={`mailto:${PROFILE.email}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-black transition hover:brightness-110"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--color-btn-on-accent)] transition hover:brightness-110"
                 >
                   <Mail className="h-4 w-4" /> Email Me
                 </a>
@@ -503,7 +550,7 @@ export default function App() {
                   href={PROFILE.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/5 px-5 py-2.5 text-sm font-medium transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-soft)] px-5 py-2.5 text-sm font-medium transition hover:bg-[var(--color-soft-2)]"
                 >
                   <Linkedin className="h-4 w-4" /> LinkedIn
                 </a>
@@ -511,7 +558,7 @@ export default function App() {
                   href={PROFILE.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/5 px-5 py-2.5 text-sm font-medium transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-soft)] px-5 py-2.5 text-sm font-medium transition hover:bg-[var(--color-soft-2)]"
                 >
                   <Github className="h-4 w-4" /> GitHub
                 </a>
