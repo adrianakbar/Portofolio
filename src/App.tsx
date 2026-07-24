@@ -247,13 +247,8 @@ export default function App() {
         label: 'Contact',
         onClick: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }),
       },
-      {
-        icon: theme === 'dark' ? <Sun className="h-5 w-5 text-[var(--color-text)]" /> : <Moon className="h-5 w-5 text-[var(--color-text)]" />,
-        label: theme === 'dark' ? 'Light' : 'Dark',
-        onClick: toggleTheme,
-      },
     ],
-    [theme],
+    [],
   )
 
   const logoColor = (key: string, fallback: string) => {

@@ -19,7 +19,8 @@
   --color-soft: rgba(255, 255, 255, 0.05);
   --color-soft-2: rgba(255, 255, 255, 0.1);
   --color-overlay: rgba(0, 0, 0, 0.2);
-  --color-dock: rgba(15, 15, 20, 0.72);
+  --color-dock: rgba(15, 15, 20, 0.82);
+  --color-dock-item: #17171f;
   --logo-mono: #FFFFFF;
 }
 
@@ -37,7 +38,8 @@ html[data-theme="light"] {
   --color-soft: rgba(15, 23, 42, 0.04);
   --color-soft-2: rgba(15, 23, 42, 0.08);
   --color-overlay: rgba(15, 23, 42, 0.04);
-  --color-dock: rgba(255, 255, 255, 0.82);
+  --color-dock: rgba(255, 255, 255, 0.92);
+  --color-dock-item: #e8edf5;
   --logo-mono: #111827;
 }
 

@@ -86,7 +86,7 @@ function DockItem({
       onBlur={() => isHovered.set(0)}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      className={`relative inline-flex items-center justify-center rounded-full bg-[#120F17] border-neutral-700 border-2 shadow-md ${className}`}
+      className={`relative inline-flex items-center justify-center rounded-full bg-[var(--color-dock-item)] border border-[var(--color-border)] shadow-md text-[var(--color-text)] ${className}`}
       tabIndex={0}
       role="button"
       aria-haspopup="true"
@@ -126,7 +126,7 @@ function DockLabel({ children, className = '', isHovered }: DockLabelProps) {
           animate={{ opacity: 1, y: -10 }}
           exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`${className} absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-neutral-700 bg-[#120F17] px-2 py-0.5 text-xs text-white`}
+          className={`${className} absolute -top-6 left-1/2 w-fit whitespace-pre rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-0.5 text-xs text-[var(--color-text)] shadow-sm`}
           role="tooltip"
           style={{ x: '-50%' }}
         >
@@ -175,7 +175,7 @@ export default function Dock({
           isHovered.set(0);
           mouseX.set(Infinity);
         }}
-        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-dock)] pb-2 px-4 backdrop-blur-md shadow-lg`}
+        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-dock)] pb-2 px-4 backdrop-blur-md shadow-[0_10px_30px_rgba(15,23,42,0.12)]`}
         style={{ height: panelHeight }}
         role="toolbar"
         aria-label="Application dock"
