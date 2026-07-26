@@ -340,46 +340,36 @@ export default function App() {
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
 
-  const dockItems = useMemo(
-    () => [
-      {
-        icon: <Home className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Home',
-        onClick: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <User className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'About',
-        onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <Building2 className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Experience',
-        onClick: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <Briefcase className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Skills',
-        onClick: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <CalendarDays className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Freelance',
-        onClick: () => document.getElementById('freelance')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <FolderKanban className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Projects',
-        onClick: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-      {
-        icon: <Mail className="h-5 w-5 text-[var(--color-text)]" />,
-        label: 'Contact',
-        onClick: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }),
-      },
-    ],
-    [],
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false,
   )
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const onChange = () => setIsMobile(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  const dockItems = useMemo(() => {
+    const go = (id: string) => () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    const icon = 'h-4 w-4 text-[var(--color-text)] sm:h-5 sm:w-5'
+    const all = [
+      { icon: <Home className={icon} />, label: 'Home', onClick: go('home') },
+      { icon: <User className={icon} />, label: 'About', onClick: go('about') },
+      { icon: <Building2 className={icon} />, label: 'Experience', onClick: go('experience') },
+      { icon: <Briefcase className={icon} />, label: 'Skills', onClick: go('skills') },
+      { icon: <CalendarDays className={icon} />, label: 'Freelance', onClick: go('freelance') },
+      { icon: <FolderKanban className={icon} />, label: 'Projects', onClick: go('projects') },
+      { icon: <Mail className={icon} />, label: 'Contact', onClick: go('contact') },
+    ]
+    // Mobile: 4 icons only — full dock overflows small screens
+    if (isMobile) {
+      return [all[0], all[2], all[5], all[6]]
+    }
+    return all
+  }, [isMobile])
 
   const logoColor = (key: string, fallback: string) => {
     if (theme === 'light' && (key === 'github' || key === 'vercel' || key === 'nextdotjs' || key === 'prisma')) {
@@ -793,8 +783,16 @@ export default function App() {
           </div>
         </footer>
 
-        <div className="fixed bottom-3 left-1/2 z-50 -translate-x-1/2">
-          <Dock items={dockItems} panelHeight={68} baseItemSize={44} magnification={62} />
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+          <div className="pointer-events-auto max-w-[calc(100vw-1.5rem)] overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <Dock
+              items={dockItems}
+              panelHeight={isMobile ? 56 : 68}
+              baseItemSize={isMobile ? 36 : 44}
+              magnification={isMobile ? 36 : 62}
+              distance={isMobile ? 80 : 140}
+            />
+          </div>
         </div>
       </div>
     </ClickSpark>
