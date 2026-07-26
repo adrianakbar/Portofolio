@@ -123,7 +123,7 @@ const EXPERIENCES = [
   {
     role: 'Freelance Full-Stack & Mobile',
     org: 'Client Projects',
-    period: '2023 – 2025 · ~2 years',
+    period: '2023 – Present · ~2+ years',
     type: 'Freelance',
     points: [
       'Web & mobile untuk UMKM, yayasan, dan instansi (koperasi, POS, reporting)',
@@ -162,7 +162,7 @@ const EXPERIENCES = [
   },
 ]
 
-/** Freelance / client work ~2 tahun (2023–2025) */
+/** Freelance / client work 2023–Present (~2+ years) */
 const FREELANCE = [
   {
     title: 'Yayasan Ar-Roudhoh',
@@ -646,9 +646,9 @@ export default function App() {
 
         <section id="freelance" className="relative z-10 py-20">
           <div className="section">
-            <SectionTitle kicker="Client Work · 2 Years" title="Freelance Projects" />
+            <SectionTitle kicker="Client Work · 2+ Years" title="Freelance Projects" />
             <p className="mx-auto mb-10 max-w-2xl text-center text-sm text-[var(--color-muted)] md:text-base">
-              Ringkasan project freelance dan client work 2023–2025: web, mobile, dan full-stack untuk UMKM, yayasan, dan instansi.
+              Freelance aktif sejak 2023 sampai sekarang: web, mobile, dan full-stack untuk UMKM, yayasan, dan instansi.
             </p>
             <div className="grid gap-5 md:grid-cols-2">
               {FREELANCE.map((p, i) => (
@@ -754,7 +754,7 @@ export default function App() {
             <SectionTitle kicker="Contact" title="Let's work together" />
             <div className="mx-auto max-w-2xl text-center">
               <p className="mb-8 text-[var(--color-muted)]">
-                2 tahun freelance web dan mobile. Open for landing page, sistem informasi, Flutter app, dan kolaborasi. Chat via email atau LinkedIn.
+                Freelance web dan mobile sejak 2023 (masih aktif). Open for landing page, sistem informasi, Flutter app, dan kolaborasi. Chat via email atau LinkedIn.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <a
