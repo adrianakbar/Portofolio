@@ -11,6 +11,9 @@ import {
   FolderKanban,
   Sun,
   Moon,
+  Building2,
+  Users,
+  CalendarDays,
 } from 'lucide-react'
 import Aurora from './components/Aurora'
 import SplitText from './components/SplitText'
@@ -116,6 +119,170 @@ const PROJECTS = [
   },
 ]
 
+const EXPERIENCES = [
+  {
+    role: 'Head of Public Relations',
+    org: 'UKM-KI Al-Azhar',
+    period: 'Des 2023 – Des 2024',
+    type: 'Organization',
+    points: [
+      'Pimpin branding dan engagement publik UKM',
+      'Koordinasi fasilitas, komunikasi, dan program kerja',
+    ],
+  },
+  {
+    role: 'Head of Athletics Division',
+    org: 'UKM Bulutangkis UNEJ',
+    period: 'Agu 2023 – Agu 2024',
+    type: 'Organization',
+    points: [
+      'Susun latihan rutin atlet untuk performa kompetisi',
+      'Urus logistik, kebutuhan atlet, dan pendampingan match',
+    ],
+  },
+  {
+    role: 'Frontend Developer Intern',
+    org: 'Sekolah Kopi Raisa',
+    period: 'Jan 2025 – Mei 2025',
+    type: 'Work',
+    points: [
+      'Ubah wireframe jadi UI responsive, clean, cross-browser',
+      'Kolaborasi tim dev untuk optimasi platform digital',
+    ],
+  },
+  {
+    role: 'Programmer',
+    org: 'Seducation',
+    period: '2024',
+    type: 'Work',
+    points: [
+      'Implementasi UI/UX bersama designer',
+      'Testing multi-device plus perbaikan bug front-end',
+    ],
+  },
+  {
+    role: 'Programmer',
+    org: 'Chicarefarm',
+    period: '2024',
+    type: 'Work',
+    points: [
+      'Terapkan desain UI/UX ke aplikasi',
+      'Jaga konsistensi tampilan lintas browser dan device',
+    ],
+  },
+  {
+    role: 'Programmer',
+    org: 'Jcation',
+    period: '2023',
+    type: 'Work',
+    points: [
+      'Bangun front-end dan back-end aplikasi',
+      'Kolaborasi tim programmer sampai fitur jalan sesuai target',
+    ],
+  },
+  {
+    role: 'Equipment and Security Division',
+    org: 'Rector Cup',
+    period: '2023, 2024',
+    type: 'Committee',
+    points: [
+      'Siapkan peralatan, layout venue, dan keamanan event',
+    ],
+  },
+  {
+    role: 'Equipment Division',
+    org: 'POMPROV JATIM II',
+    period: 'Sep 2023 – Okt 2023',
+    type: 'Committee',
+    points: [
+      'Signage venue, fasilitas peserta, dan perizinan gedung',
+    ],
+  },
+  {
+    role: 'Equipment Division',
+    org: 'Besuki Raya',
+    period: 'Jan 2023 – Feb 2023',
+    type: 'Committee',
+    points: [
+      'Layout venue, perizinan, dan persiapan peralatan event',
+    ],
+  },
+]
+
+/** Freelance / client work ~2 tahun (2023–2025) */
+const FREELANCE = [
+  {
+    title: 'Yayasan Ar-Roudhoh',
+    role: 'Freelance Full-Stack',
+    period: 'Jun 2025 – Agu 2025',
+    blurb:
+      'Sistem koperasi simpan pinjam web: digitasi catatan keuangan, transaksi anggota, dan riwayat pinjaman.',
+    tags: ['Laravel', 'PHP', 'MySQL'],
+    logos: ['laravel', 'php', 'mysql'],
+    type: 'Web',
+  },
+  {
+    title: 'Sijago',
+    role: 'Freelance Mobile',
+    period: 'Mar 2025 – Apr 2025',
+    blurb:
+      'Aplikasi pelaporan lapangan untuk personel Polsek: input, kelola, dan proses laporan kejadian di lapangan.',
+    tags: ['Flutter', 'Dart'],
+    logos: ['flutter', 'dart'],
+    type: 'Mobile',
+  },
+  {
+    title: 'TSG Snack',
+    role: 'Freelance Mobile',
+    period: 'Jan 2025 – Feb 2025',
+    blurb:
+      'POS mobile untuk bisnis cemilan kiloan: transaksi cepat, stok, dan alur kasir harian.',
+    tags: ['Flutter', 'Dart'],
+    logos: ['flutter', 'dart'],
+    type: 'Mobile',
+  },
+  {
+    title: 'Sekolah Kopi Raisa',
+    role: 'Frontend Intern / Client',
+    period: 'Jan 2025 – Mei 2025',
+    blurb:
+      'UI platform digital dari wireframe ke kode responsive, fokus UX dan kompatibilitas browser.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    logos: ['html5', 'css', 'javascript'],
+    type: 'Web',
+  },
+  {
+    title: 'Seducation',
+    role: 'Freelance / Project Dev',
+    period: '2024',
+    blurb:
+      'Front-end multi-device: implementasi desain UI/UX, testing, dan perbaikan bug.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    logos: ['html5', 'css', 'javascript'],
+    type: 'Web',
+  },
+  {
+    title: 'Chicarefarm',
+    role: 'Freelance / Project Dev',
+    period: '2024',
+    blurb:
+      'Aplikasi front-end dari desain UI/UX, stabil dan konsisten lintas browser dan device.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    logos: ['html5', 'css', 'javascript'],
+    type: 'Web',
+  },
+  {
+    title: 'Jcation',
+    role: 'Freelance / Project Dev',
+    period: '2023',
+    blurb:
+      'Full-stack aplikasi: front-end plus back-end, kolaborasi tim sampai fitur sesuai kebutuhan klien.',
+    tags: ['JavaScript', 'PHP'],
+    logos: ['javascript', 'php'],
+    type: 'Full-stack',
+  },
+]
+
 /** Brand logos via Simple Icons CDN */
 const LOGO: Record<string, { slug: string; color: string; label: string }> = {
   laravel: { slug: 'laravel', color: 'FF2D20', label: 'Laravel' },
@@ -184,9 +351,9 @@ function BrandLogo({
 
 const STATS = [
   { label: 'Public Repos', value: 25 },
-  { label: 'Web Projects', value: 10 },
-  { label: 'Mobile Apps', value: 6 },
-  { label: 'Years Learning', value: 4 },
+  { label: 'Freelance Yrs', value: 2 },
+  { label: 'Client Projects', value: 7 },
+  { label: 'Org Roles', value: 2 },
 ]
 
 function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
@@ -233,9 +400,19 @@ export default function App() {
         onClick: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
+        icon: <Building2 className="h-5 w-5 text-[var(--color-text)]" />,
+        label: 'Experience',
+        onClick: () => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }),
+      },
+      {
         icon: <Briefcase className="h-5 w-5 text-[var(--color-text)]" />,
         label: 'Skills',
         onClick: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }),
+      },
+      {
+        icon: <CalendarDays className="h-5 w-5 text-[var(--color-text)]" />,
+        label: 'Freelance',
+        onClick: () => document.getElementById('freelance')?.scrollIntoView({ behavior: 'smooth' }),
       },
       {
         icon: <FolderKanban className="h-5 w-5 text-[var(--color-text)]" />,
@@ -286,7 +463,9 @@ export default function App() {
             <nav className="hidden items-center gap-7 text-sm text-[var(--color-muted)] md:flex">
               {[
                 ['About', '#about'],
+                ['Experience', '#experience'],
                 ['Skills', '#skills'],
+                ['Freelance', '#freelance'],
                 ['Projects', '#projects'],
                 ['Contact', '#contact'],
               ].map(([label, href]) => (
@@ -446,6 +625,45 @@ export default function App() {
           </div>
         </section>
 
+        <section id="experience" className="relative z-10 py-20">
+          <div className="section">
+            <SectionTitle kicker="Career and Org" title="Experience" />
+            <div className="mx-auto grid max-w-4xl gap-4">
+              {EXPERIENCES.map((exp, i) => (
+                <FadeContent key={`${exp.org}-${exp.role}`} delay={i * 35} duration={550}>
+                  <SpotlightCard className="card-surface p-5" spotlightColor="rgba(94, 234, 212, 0.14)">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="min-w-0">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span className="rounded-full border border-[var(--color-border)] px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-[var(--color-muted)]">
+                            {exp.type}
+                          </span>
+                          <span className="text-xs text-[var(--color-muted)]">{exp.period}</span>
+                        </div>
+                        <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold leading-snug">
+                          {exp.role}
+                        </h3>
+                        <p className="mt-1 flex items-center gap-1.5 text-sm text-[var(--color-accent)]">
+                          <Users className="h-3.5 w-3.5 shrink-0" />
+                          {exp.org}
+                        </p>
+                        <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
+                          {exp.points.map((pt) => (
+                            <li key={pt} className="flex gap-2">
+                              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                              <span>{pt}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </SpotlightCard>
+                </FadeContent>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="skills" className="relative z-10 py-16">
           <div className="section">
             <SectionTitle kicker="Stack" title="Skills & Tools" />
@@ -469,6 +687,57 @@ export default function App() {
                   </FadeContent>
                 )
               })}
+            </div>
+          </div>
+        </section>
+
+        <section id="freelance" className="relative z-10 py-20">
+          <div className="section">
+            <SectionTitle kicker="Client Work · 2 Years" title="Freelance Projects" />
+            <p className="mx-auto mb-10 max-w-2xl text-center text-sm text-[var(--color-muted)] md:text-base">
+              Ringkasan project freelance dan client work 2023–2025: web, mobile, dan full-stack untuk UMKM, yayasan, dan instansi.
+            </p>
+            <div className="grid gap-5 md:grid-cols-2">
+              {FREELANCE.map((p, i) => (
+                <FadeContent key={`${p.title}-${p.period}`} delay={i * 45} duration={600}>
+                  <SpotlightCard className="card-surface min-h-[200px] p-5" spotlightColor="rgba(167, 139, 250, 0.18)">
+                    <div className="flex h-full min-h-[170px] flex-col justify-between">
+                      <div>
+                        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                          <span className="rounded-full border border-[var(--color-border)] px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-[var(--color-muted)]">
+                            {p.type}
+                          </span>
+                          <span className="text-xs text-[var(--color-muted)]">{p.period}</span>
+                        </div>
+                        <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold">{p.title}</h3>
+                        <p className="mt-1 text-sm font-medium text-[var(--color-accent)]">{p.role}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{p.blurb}</p>
+                      </div>
+                      <div className="mt-4 flex flex-wrap items-center gap-2">
+                        {p.logos.map((key) => {
+                          const logo = LOGO[key]
+                          if (!logo) return null
+                          return (
+                            <span
+                              key={key}
+                              className="inline-flex items-center gap-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-soft)] px-2 py-1 text-xs text-[var(--color-muted)]"
+                              title={logo.label}
+                            >
+                              <img
+                                src={`https://cdn.simpleicons.org/${logo.slug}/${logoColor(key, logo.color)}`}
+                                alt={logo.label}
+                                className="h-3.5 w-3.5 object-contain"
+                                loading="lazy"
+                              />
+                              {logo.label}
+                            </span>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </SpotlightCard>
+                </FadeContent>
+              ))}
             </div>
           </div>
         </section>
@@ -532,7 +801,7 @@ export default function App() {
             <SectionTitle kicker="Contact" title="Let's work together" />
             <div className="mx-auto max-w-2xl text-center">
               <p className="mb-8 text-[var(--color-muted)]">
-                Open for freelance landing page, sistem informasi, dan kolaborasi project. Langsung chat via email atau LinkedIn.
+                2 tahun freelance web dan mobile. Open for landing page, sistem informasi, Flutter app, dan kolaborasi. Chat via email atau LinkedIn.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <a
