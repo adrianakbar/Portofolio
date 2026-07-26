@@ -50,6 +50,7 @@ const PROJECTS = [
     blurb: 'Landing page branding kos dengan gaya hospitality, CTA WhatsApp, dan gallery fasilitas.',
     tags: ['HTML', 'Tailwind', 'Vercel'],
     logos: ['html5', 'tailwindcss', 'vercel'],
+    brand: '/projects/kosbuwatik.png',
     href: 'https://kosbuwatik.vercel.app',
     repo: 'https://github.com/adrianakbar/KosBuwatik',
     type: 'Web',
@@ -59,6 +60,7 @@ const PROJECTS = [
     blurb: 'Sistem informasi koperasi simpan pinjam (skripsi) dengan alur pinjaman kelompok, fee, dan laporan.',
     tags: ['Laravel', 'PHP', 'MySQL'],
     logos: ['laravel', 'php', 'mysql'],
+    brand: '/projects/kta.png',
     href: 'https://github.com/adrianakbar/karya_tantri_abadi',
     repo: 'https://github.com/adrianakbar/karya_tantri_abadi',
     type: 'System',
@@ -68,6 +70,7 @@ const PROJECTS = [
     blurb: 'Aplikasi mobile untuk pencatatan keuangan pribadi.',
     tags: ['Flutter', 'Dart'],
     logos: ['flutter', 'dart'],
+    brand: '/projects/uangku.png',
     href: 'https://github.com/adrianakbar/uangku',
     repo: 'https://github.com/adrianakbar/uangku',
     type: 'Mobile',
@@ -77,6 +80,7 @@ const PROJECTS = [
     blurb: 'Website review bisnis lokal untuk membantu UMKM tampil terpercaya.',
     tags: ['HTML', 'CSS'],
     logos: ['html5', 'css'],
+    brand: '/projects/reviewbisnisku.svg',
     href: 'https://github.com/adrianakbar/reviewbisnisku',
     repo: 'https://github.com/adrianakbar/reviewbisnisku',
     type: 'Web',
@@ -86,6 +90,7 @@ const PROJECTS = [
     blurb: 'Website klinik hewan dengan fitur deteksi untuk admin.',
     tags: ['Laravel', 'Blade'],
     logos: ['laravel', 'php'],
+    brand: '/projects/pawcare.png',
     href: 'https://github.com/adrianakbar/PawCare',
     repo: 'https://github.com/adrianakbar/PawCare',
     type: 'Web',
@@ -95,6 +100,7 @@ const PROJECTS = [
     blurb: 'Sistem Izin Kerja Aman untuk manajemen perizinan kerja.',
     tags: ['JavaScript'],
     logos: ['javascript'],
+    brand: '/projects/sika.png',
     href: 'https://github.com/adrianakbar/sika',
     repo: 'https://github.com/adrianakbar/sika',
     type: 'System',
@@ -104,6 +110,7 @@ const PROJECTS = [
     blurb: 'Landing page branding gedung olahraga bulutangkis.',
     tags: ['HTML', 'CSS'],
     logos: ['html5', 'css'],
+    brand: '/projects/gentengan.png',
     href: 'https://github.com/adrianakbar/GentenganBadminton',
     repo: 'https://github.com/adrianakbar/GentenganBadminton',
     type: 'Web',
@@ -113,6 +120,7 @@ const PROJECTS = [
     blurb: 'Aplikasi mobile monitoring hidroponik.',
     tags: ['Flutter', 'IoT'],
     logos: ['flutter', 'dart'],
+    brand: '/projects/hidro.png',
     href: 'https://github.com/adrianakbar/HidroControl',
     repo: 'https://github.com/adrianakbar/HidroControl',
     type: 'Mobile',
@@ -691,45 +699,56 @@ export default function App() {
             <div className="grid gap-5 md:grid-cols-2">
               {PROJECTS.map((p, i) => (
                 <FadeContent key={p.title} delay={i * 50} duration={650}>
-                  <SpotlightCard className="card-surface min-h-[220px] p-5" spotlightColor="rgba(167, 139, 250, 0.22)">
-                    <div className="flex h-full min-h-[190px] flex-col justify-between">
-                      <div>
-                        <div className="mb-3 flex items-center justify-between gap-3">
-                          <span className="rounded-full border border-[var(--color-border)] px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-[var(--color-muted)]">
-                            {p.type}
-                          </span>
-                          <div className="flex gap-2">
-                            <a href={p.repo} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} repo`}>
-                              <Github className="h-4 w-4" />
-                            </a>
-                            <a href={p.href} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} live`}>
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </div>
-                        <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold">{p.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{p.blurb}</p>
+                  <SpotlightCard className="card-surface min-h-[220px] overflow-hidden p-0" spotlightColor="rgba(167, 139, 250, 0.22)">
+                    <div className="flex h-full min-h-[210px] flex-col">
+                      <div className="flex items-center justify-center border-b border-[var(--color-border)] bg-[var(--color-soft)] px-5 py-4">
+                        <img
+                          src={p.brand}
+                          alt={`${p.title} logo`}
+                          className="h-14 w-auto max-w-[70%] object-contain"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
-                      <div className="mt-4 flex flex-wrap items-center gap-2">
-                        {p.logos.map((key) => {
-                          const logo = LOGO[key]
-                          if (!logo) return null
-                          return (
-                            <span
-                              key={key}
-                              className="inline-flex items-center gap-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-soft)] px-2 py-1 text-xs text-[var(--color-muted)]"
-                              title={logo.label}
-                            >
-                              <img
-                                src={`https://cdn.simpleicons.org/${logo.slug}/${logoColor(key, logo.color)}`}
-                                alt={logo.label}
-                                className="h-3.5 w-3.5 object-contain"
-                                loading="lazy"
-                              />
-                              {logo.label}
+                      <div className="flex flex-1 flex-col justify-between p-5">
+                        <div>
+                          <div className="mb-3 flex items-center justify-between gap-3">
+                            <span className="rounded-full border border-[var(--color-border)] px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-[var(--color-muted)]">
+                              {p.type}
                             </span>
-                          )
-                        })}
+                            <div className="flex gap-2">
+                              <a href={p.repo} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} repo`}>
+                                <Github className="h-4 w-4" />
+                              </a>
+                              <a href={p.href} target="_blank" rel="noreferrer" className="text-[var(--color-muted)] hover:text-[var(--color-text)]" aria-label={`${p.title} live`}>
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            </div>
+                          </div>
+                          <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold">{p.title}</h3>
+                          <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{p.blurb}</p>
+                        </div>
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          {p.logos.map((key) => {
+                            const logo = LOGO[key]
+                            if (!logo) return null
+                            return (
+                              <span
+                                key={key}
+                                className="inline-flex items-center gap-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-soft)] px-2 py-1 text-xs text-[var(--color-muted)]"
+                                title={logo.label}
+                              >
+                                <img
+                                  src={`https://cdn.simpleicons.org/${logo.slug}/${logoColor(key, logo.color)}`}
+                                  alt={logo.label}
+                                  className="h-3.5 w-3.5 object-contain"
+                                  loading="lazy"
+                                />
+                                {logo.label}
+                              </span>
+                            )
+                          })}
+                        </div>
                       </div>
                     </div>
                   </SpotlightCard>
