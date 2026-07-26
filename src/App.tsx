@@ -121,6 +121,26 @@ const PROJECTS = [
 
 const EXPERIENCES = [
   {
+    role: 'Freelance Full-Stack & Mobile',
+    org: 'Client Projects',
+    period: '2023 – 2025 · ~2 years',
+    type: 'Freelance',
+    points: [
+      'Web & mobile untuk UMKM, yayasan, dan instansi (koperasi, POS, reporting)',
+      'Stack: Laravel/PHP, Flutter/Dart, HTML/CSS/JS',
+    ],
+  },
+  {
+    role: 'Frontend Developer Intern',
+    org: 'Sekolah Kopi Raisa',
+    period: 'Jan 2025 – Mei 2025',
+    type: 'Intern',
+    points: [
+      'Ubah wireframe jadi UI responsive, clean, cross-browser',
+      'Kolaborasi tim dev untuk optimasi platform digital',
+    ],
+  },
+  {
     role: 'Head of Public Relations',
     org: 'UKM-KI Al-Azhar',
     period: 'Des 2023 – Des 2024',
@@ -138,73 +158,6 @@ const EXPERIENCES = [
     points: [
       'Susun latihan rutin atlet untuk performa kompetisi',
       'Urus logistik, kebutuhan atlet, dan pendampingan match',
-    ],
-  },
-  {
-    role: 'Frontend Developer Intern',
-    org: 'Sekolah Kopi Raisa',
-    period: 'Jan 2025 – Mei 2025',
-    type: 'Work',
-    points: [
-      'Ubah wireframe jadi UI responsive, clean, cross-browser',
-      'Kolaborasi tim dev untuk optimasi platform digital',
-    ],
-  },
-  {
-    role: 'Programmer',
-    org: 'Seducation',
-    period: '2024',
-    type: 'Work',
-    points: [
-      'Implementasi UI/UX bersama designer',
-      'Testing multi-device plus perbaikan bug front-end',
-    ],
-  },
-  {
-    role: 'Programmer',
-    org: 'Chicarefarm',
-    period: '2024',
-    type: 'Work',
-    points: [
-      'Terapkan desain UI/UX ke aplikasi',
-      'Jaga konsistensi tampilan lintas browser dan device',
-    ],
-  },
-  {
-    role: 'Programmer',
-    org: 'Jcation',
-    period: '2023',
-    type: 'Work',
-    points: [
-      'Bangun front-end dan back-end aplikasi',
-      'Kolaborasi tim programmer sampai fitur jalan sesuai target',
-    ],
-  },
-  {
-    role: 'Equipment and Security Division',
-    org: 'Rector Cup',
-    period: '2023, 2024',
-    type: 'Committee',
-    points: [
-      'Siapkan peralatan, layout venue, dan keamanan event',
-    ],
-  },
-  {
-    role: 'Equipment Division',
-    org: 'POMPROV JATIM II',
-    period: 'Sep 2023 – Okt 2023',
-    type: 'Committee',
-    points: [
-      'Signage venue, fasilitas peserta, dan perizinan gedung',
-    ],
-  },
-  {
-    role: 'Equipment Division',
-    org: 'Besuki Raya',
-    period: 'Jan 2023 – Feb 2023',
-    type: 'Committee',
-    points: [
-      'Layout venue, perizinan, dan persiapan peralatan event',
     ],
   },
 ]
